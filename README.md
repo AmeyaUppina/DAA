@@ -3,9 +3,8 @@ This Repository consists of all the codes written as a part of the Course 'Desig
 Known Issues: \
 The following codes are missing:
 1) Huffman Coding
-2) Bellman-Ford
-3) Knuth Morris Pratt
-4) Rabin Karp
-5) N-Queens
+2) Knuth Morris Pratt
+3) Rabin Karp
+4) N-Queens
 
 Please report any other issues/inconsistencies notice.
