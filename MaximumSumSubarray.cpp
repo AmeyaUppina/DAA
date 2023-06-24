@@ -3,6 +3,8 @@
 #include<cmath>
 using namespace std;
 
+#define INT_MIN -999999
+
 int csa(vector<int> &a, int low, int mid, int high)
 {
     int ls = INT_MIN;
