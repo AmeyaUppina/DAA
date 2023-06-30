@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void computeLPSArray(char* pat, int M, int* lps)
+void computeLPS(char* pat, int M, int* lps)
 {
     int len = 0;
     lps[0] = 0;
@@ -34,7 +34,7 @@ void KMPSearch(char* pat, char* txt)
     int M = (int)strlen(pat);
     int N = (int)strlen(txt);
     int lps[M];
-    computeLPSArray(pat, M, lps);
+    computeLPS(pat, M, lps);
 
     int i = 0;
     int j = 0;
