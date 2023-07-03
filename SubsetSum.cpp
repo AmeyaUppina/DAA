@@ -3,11 +3,11 @@ using namespace std;
 
 //int count = 0;
 
-int subsetsum(int list[], int sum, int start, int target, int size, int subset[], int subsetSize, int count)
+void subsetsum(int list[], int sum, int start, int target, int size, int subset[], int subsetSize, int *count)
 {
     if (sum == target)
     {
-        count++;
+        (*count)++;
         for (int i = 0; i < subsetSize; i++) 
         {
             cout << subset[i] << " ";
@@ -17,7 +17,7 @@ int subsetsum(int list[], int sum, int start, int target, int size, int subset[]
 
     if (start >= size)
     {
-        return count;
+        return;
     }
 
     for (int i = start; i < size; i++)
@@ -25,11 +25,9 @@ int subsetsum(int list[], int sum, int start, int target, int size, int subset[]
         if (sum + list[i] <= target)
         {
             subset[subsetSize] = list[i];
-            count = subsetsum(list, sum + list[i], i + 1, target, size, subset, subsetSize + 1, count);
+            subsetsum(list, sum + list[i], i + 1, target, size, subset, subsetSize + 1, count);
         }
     }
-
-    return count;
 }
 
 int main()
@@ -39,7 +37,7 @@ int main()
     int size = sizeof(nums) / sizeof(nums[0]);
     int subset[size];
     int count = 0;
-    int ans =  subsetsum(nums, 0, 0, target, size, subset, 0, count);
-    cout<<"Total possible subsets: "<<ans<<"\n";
+    subsetsum(nums, 0, 0, target, size, subset, 0, &count);
+    cout<<"Total possible subsets: "<<count<<"\n";
     return 0;
 }
