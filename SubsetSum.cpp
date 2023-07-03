@@ -38,6 +38,6 @@ int main()
     int subset[size];
     int count = 0;
     subsetsum(nums, 0, 0, target, size, subset, 0, &count);
-    cout<<"Total possible subsets: "<<count<<"\n";
+    cout<<"Total possible subsets: "<<count<<endl;
     return 0;
 }
