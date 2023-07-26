@@ -20,11 +20,11 @@ int main() {
         {
             if(j >= w[i-1])
             {
-                v[i][j] = max(v[i-1][j-1], v[i-1][j-w[i-1]]+p[i-1]);
+                v[i][j] = max(v[i-1][j], v[i-1][j-w[i-1]]+p[i-1]);
             }
             else
             {
-                v[i][j] = v[i-1][j-1];
+                v[i][j] = v[i-1][j];
             }
         }
     }
