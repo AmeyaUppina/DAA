@@ -4,4 +4,4 @@ Known Issues: \
 The following codes are missing:
 1) Huffman Coding
 
-Please report any other issues/inconsistencies notice.
+Please report any other issues/inconsistencies noticed.
