@@ -26,8 +26,8 @@ int main() {
     for (int i = 1; i <= num_vertices - 1; ++i) {
         for (int u = 0; u < num_vertices; ++u) {
             for (int v = 0; v < num_vertices; ++v) {
-                if (cost_matrix[u][v] != INF && distance[u] != INF && distance[u] + cost_matrix[u][v] < distance[v]) {
-                    distance[v] = distance[u] + cost_matrix[u][v];
+                if (cost_matrix[u][v] != INF && distance[u] != INF) {
+                    distance[v] = min(distance[u] + cost_matrix[u][v], distance[v]);
                 }
             }
         }
