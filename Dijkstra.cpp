@@ -46,10 +46,7 @@ int main() {
         // Relax the neighbors of the current node
         for (int neighbor_node = 0; neighbor_node < num_nodes; ++neighbor_node) {
             if (!visited[neighbor_node] && cost_matrix[current_node][neighbor_node] > 0 && cost_matrix[current_node][neighbor_node] < INF) {
-                int weight = cost_matrix[current_node][neighbor_node];
-                if (distance[current_node] + weight < distance[neighbor_node]) {
-                    distance[neighbor_node] = distance[current_node] + weight;
-                }
+                distance[neighbor_node] = min(distance[current_node] + cost_matrix[current_node][neighbor_node], distance[neighbor_node])
             }
         }
     }
