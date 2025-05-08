@@ -1,49 +1,57 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <limits>
+
 using namespace std;
 
-#define V 4
-#define INF 99999
+const int INF = numeric_limits<int>::max();
 
-void printSolution(int dist[][V]);
+int main() {
+    int num_vertices = 4;
 
-void floydWarshall(int dist[][V])
-{
-    int i, j, k;
-    for (k = 0; k < V; k++)
-    {
-        for (i = 0; i < V; i++)
-        {
-            for (j = 0; j < V; j++)
-            {
-                    dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j]);
+    // Cost matrix representing the directed graph
+    vector<vector<int>> cost_matrix = {
+        {0, 5, INF, 10},
+        {INF, 0, 3, INF},
+        {INF, INF, 0, 1},
+        {INF, INF, INF, 0}
+    };
+
+    // Initialize the shortest path matrix with the cost matrix
+    vector<vector<int>> shortest_path = cost_matrix;
+
+    // Floyd-Warshall algorithm
+    for (int k = 0; k < num_vertices; ++k) {
+        for (int i = 0; i < num_vertices; ++i) {
+            for (int j = 0; j < num_vertices; ++j) {
+                if (shortest_path[i][k] != INF && shortest_path[k][j] != INF) {
+                    shortest_path[i][j] = min(shortest_path[i][j], shortest_path[i][k] + shortest_path[k][j]);
+                }
             }
         }
     }
 
-    printSolution(dist);
-}
-
-void printSolution(int dist[][V])
-{
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            if (dist[i][j] == INF)
-                cout << "INF"
-                     << " ";
-            else
-                cout << dist[i][j] << "   ";
+    // Print the all-pairs shortest paths
+    cout << "All-Pairs Shortest Paths:" << endl;
+    for (int i = 0; i < num_vertices; ++i) {
+        cout << "From vertex " << i << ":" << endl;
+        for (int j = 0; j < num_vertices; ++j) {
+            if (shortest_path[i][j] == INF) {
+                cout << "  To vertex " << j << ": Infinity" << endl;
+            } else {
+                cout << "  To vertex " << j << ": " << shortest_path[i][j] << endl;
+            }
         }
         cout << endl;
     }
-}
 
-int main()
-{
-    int graph[V][V] = { { 0, 3, INF, 7 },
-                        { 8, 0, 2, INF },
-                        { 5, INF, 0, 1 },
-                        { 2, INF, INF, 0 } };
+    // Check for negative cycles
+    cout << "Negative Cycles:" << endl;
+    for (int i = 0; i < num_vertices; ++i) {
+        if (shortest_path[i][i] < 0) {
+            cout << "Negative cycle detected involving vertex " << i << endl;
+        }
+    }
 
-    floydWarshall(graph);
     return 0;
 }
